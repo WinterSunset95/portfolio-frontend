@@ -5,8 +5,9 @@
 import {useState, useEffect } from 'react'
 
 const Nav = () => {
+	window.addEventListener('scroll', () => console.log(window.scrollY))
 	return (
-		<nav className="w-full Montserrat text-md flex justify-between items-center p-2 md:p-4">
+		<nav className="w-screen Montserrat text-md flex justify-between items-center p-2 md:p-4 text-[#f6f6f6] font-[300] bg-[rgba(20,20,20,0.3)] sticky top-0">
 			WinterSunset95
 			<ul className="flex justify-around items-center text-sm">
 				<li className="mr-2">Home</li>

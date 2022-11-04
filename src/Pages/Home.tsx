@@ -9,10 +9,8 @@ import horror from '../assets/backgrounds/horror.jpg'
 
 const Home = () => {
 	return (
-		<div className="flex flex-col justify-center items-center w-full relative">
-			<div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center">
-				<img src={horror} className="object-none" alt="Horror bg"/>
-			</div>
+		<div className="flex flex-col justify-start items-center w-full relative h-screen">
+			<img src={horror} className="absolute w-full top-0 -z-10" alt="Horror bg"/>
 			<Nav />
 			This is the home page
 		</div>
