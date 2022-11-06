@@ -9,7 +9,7 @@ const Nav = () => {
 	const [full, setFull] = useState(false)
 	window.addEventListener('scroll', () => window.scrollY > 40 ? setTop(false) : setTop(true))
 	return (
-		<nav className={`${top ? 'w-screen md:w-9/12' : 'w-screen sticky top-0 bg-[rgba(20,20,20,0.3)]'} duration-300 Montserrat text-md flex justify-between items-center p-2 md:p-4 text-gray-100 font-[300] text-base md:text-xl`}>
+		<nav className={`${top ? 'p-2 md:px-32' : 'p-2 md:p-4 sticky top-0 bg-[rgba(20,20,20,0.5)]'} w-full duration-300 Montserrat text-md flex justify-between items-center text-gray-100 font-[300] text-base md:text-xl z-10 backdrop-blur-sm`}>
 			<span className={`${full ? 'w-0 overflow-hidden' : 'w-full'} duration-500`}>
 				WinterSunset95
 			</span>
