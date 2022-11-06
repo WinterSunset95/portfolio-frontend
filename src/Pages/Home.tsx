@@ -32,10 +32,10 @@ const Home = () => {
 						</span>
 						<p className={`font-[300] text-sm text-[#f8f8f8] text-end py-4`}>I am a self taught, self motivated, highly determined programmer<br/> I am dumb</p>
 						<div className="flex flex-row justify-around items-center p-2 rounded-full backdrop-blur-lg bg-[#f6f6f6]">
-							<i className="m-2 fa-lg md:fa-2xl fa-brands fa-github"></i>
-							<i className="m-2 fa-lg md:fa-2xl fa-brands fa-reddit"></i>
-							<i className="m-2 fa-lg md:fa-2xl fa-brands fa-facebook"></i>
-							<i className="m-2 fa-lg md:fa-2xl fa-brands fa-linkedin"></i>
+							<i className="m-2 fa-lg md:fa-3xl fa-brands fa-github"></i>
+							<i className="m-2 fa-lg md:fa-3xl fa-brands fa-reddit"></i>
+							<i className="m-2 fa-lg md:fa-3xl fa-brands fa-facebook"></i>
+							<i className="m-2 fa-lg md:fa-3xl fa-brands fa-linkedin"></i>
 						</div>
 						<a onClick={() => setPos('bot')} className={`${pos == 'top' ? '' : 'hidden'} absolute bottom-5 left-1/2 transform -translate-x-1/2 h-12 w-12 rounded-full backdrop-blur-lg flex justify-center items-center animate-pulse`} href="#section-tools">
 							<i className="m-2 fa-xl fa-solid fa-arrow-down text-white"></i>
