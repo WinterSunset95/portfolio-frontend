@@ -5,11 +5,6 @@
 
 import {useState, useEffect} from 'react'
 import Nav from '../Components/Nav'
-import horror from '../assets/backgrounds/horror.jpg'
-import street_aesthetic from '../assets/backgrounds/street_aesthetic.jpg'
-import programming from '../assets/backgrounds/programming.jpg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 //npm i --save @fortawesome/fontawesome-svg-core
 //npm install --save @fortawesome/free-solid-svg-icons
@@ -17,7 +12,27 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
 	const [pos, setPos] = useState('top')
-	const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+	const [yvalue, setYvalue] = useState(0)
+
+	const waiter = (x: number) => {
+		setYvalue(x)
+	}
+
+	window.addEventListener('scroll', () => {
+		if (window.scrollY > yvalue && window.scrollY - yvalue > 200) {
+			setPos('bot')
+			if (document.getElementById('section-tools')) {
+				document.getElementById('section-tools')!.scrollIntoView()
+			}
+		} else if (window.scrollY < yvalue && yvalue - window.scrollY > 200) {
+			setPos('top')
+			if (document.getElementById('section-intro')) {
+				document.getElementById('section-intro')!.scrollIntoView()
+			}
+		}
+		setTimeout(() => setYvalue(window.scrollY), 1000)
+	})
+
 	return (
 		<div className="flex flex-col justify-start items-center w-full relative">
 			<div id="section-intro"></div>
