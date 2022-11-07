@@ -58,16 +58,18 @@ const Home = () => {
 		}
 	})
 
-//	window.addEventListener('scroll', () => {
-//		if (window.scrollY > yvalue && window.scrollY - yvalue > 200) {
-//			down()
-//		} else if (window.scrollY < yvalue && yvalue - window.scrollY > 200) {
-//			up()
-//		} else {
-//			let o: number
-//		}
-//		setTimeout(() => setYvalue(window.scrollY), 1000)
-//	})
+// Slide in on scroll in
+const observer = new IntersectionObserver((entries) => {
+	entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+			entry.target.classList.add('scroll-into-view')
+		} else {
+			entry.target.classList.remove('scroll-into-view')
+		}
+	})
+})
+const hiddenElements = document.querySelectorAll('.animate-in')
+hiddenElements.forEach((el) => observer.observe(el))
 
 	return (
 		<div className="flex flex-col justify-start items-center w-full relative">
@@ -76,13 +78,13 @@ const Home = () => {
 			<main className={`w-full backdrop-blur-sm h-fit`}>
 
 				<section className={`mx-12 lg:mx-32 Montserrat flex flex-col md:flex-row justify-center md:justify-between items-center h-[90vh] relative`} >
-					<img src="https://avatars.githubusercontent.com/u/90015510?s=400&u=c2d963e5188a2af39faf942c72ab89efbc52722a&v=4" className="rounded-full w-48" alt="" />
+					<img src="https://avatars.githubusercontent.com/u/90015510?s=400&u=c2d963e5188a2af39faf942c72ab89efbc52722a&v=4" className="rounded-full w-48 animate-in" alt="" />
 					<div className="flex flex-col justify-around items-center md:items-end">
-						<span className={`font-[700] text-2xl md:text-4xl text-[#f6f6f6] flex flex-row justify-between items-center`}>
+						<div className={`font-[700] text-2xl md:text-4xl text-[#f6f6f6] flex flex-col justify-around items-center md:items-end my-4 animate-in`}>
 							WinterSunset95
-						</span>
-						<p className={`font-[300] text-sm text-[#f8f8f8] text-center md:text-end py-4`}>Self taught, self motivated, highly determined programmer<br/>Dumb</p>
-						<div className="flex flex-row justify-around items-center p-2 rounded-full md:backdrop-blur-lg md:bg-[rgba(50,50,50,0.5)] md:text-xs">
+						</div>
+						<p className={`font-[300] text-sm text-[#f8f8f8] text-center md:text-end py-4 animate-in`}>Self taught, self motivated, highly determined programmer<br/>Dumb</p>
+						<div className="flex flex-row justify-around items-center p-2 rounded-full md:backdrop-blur-lg md:bg-[rgba(50,50,50,0.5)] md:text-xs animate-in">
 							<i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-github"></i>
 							<i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-reddit"></i>
 							<i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-linkedin"></i>
@@ -92,12 +94,12 @@ const Home = () => {
 				</section>
 
 				<section className={`px-12 Montserrat flex flex-col justify-center items-center text-[#fff] h-screen relative`} id="section-tools">
-					<div className={`my-40 md:my-28 p-0 lg:p-24 lg:pt-32 max-w-full max-h-full grid auto-rows-fr gap-8 grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12`}>
-						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3">
+					<div className={`my-40 md:my-28 p-0 lg:p-24 lg:pt-36 max-w-full max-h-full grid auto-rows-fr gap-8 grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12`}>
+						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3 animate-in">
 							<img src={react} className="rounded-full hover:animate-spin-slow" alt="" />
 						</div>
 						<div className="rounded-full flex justify-center items-center scale-200">
-							<img src={rust} className="" alt="" />
+							<img src={rust} className="animate-in" alt="" />
 						</div>
 						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3">
 							<div className="rounded-full p-2 bg-[rgba(50,50,50,0.5)]">

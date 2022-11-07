@@ -11,3 +11,13 @@
 html {
 	scroll-behavior: smooth;
 }
+
+.animate-in {
+	transform: translateY(-50%);
+	transition: all 1s ease-in;
+}
+
+.scroll-into-view {
+	transform: translateX(0);
+}
+
