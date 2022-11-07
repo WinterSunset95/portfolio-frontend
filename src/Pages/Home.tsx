@@ -17,6 +17,7 @@ import python from '../assets/logo/python.png'
 import ts from '../assets/logo/ts.png'
 import bs4 from '../assets/logo/bs4.png'
 import selenium from '../assets/logo/selenium.png'
+import git from '../assets/logo/git.png'
 
 //npm i --save @fortawesome/fontawesome-svg-core
 //npm install --save @fortawesome/free-solid-svg-icons
@@ -129,6 +130,9 @@ const Home = () => {
 						</div>
 						<div className="rounded-full flex justify-center items-center scale-200">
 							<img src={mern} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center row-span-2 col-span-2">
+							<img src={git} className="rounded-full" alt="" style={{ filter: 'invert(100%)' }}/>
 						</div>
 					</div>
 				</section>
