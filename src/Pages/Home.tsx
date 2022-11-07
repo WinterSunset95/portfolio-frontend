@@ -5,6 +5,18 @@
 
 import {useState, useEffect} from 'react'
 import Nav from '../Components/Nav'
+import react from '../assets/logo/react.png'
+import linux from '../assets/logo/linux-logo.png'
+import rust from '../assets/logo/cuddlyferris.png'
+import nodejs from '../assets/logo/nodejs.jpg'
+import bash from '../assets/logo/bash.png'
+import php from '../assets/logo/php.png'
+import mern from '../assets/logo/mern.png'
+import golang from '../assets/logo/golang.png'
+import python from '../assets/logo/python.png'
+import ts from '../assets/logo/ts.png'
+import bs4 from '../assets/logo/bs4.png'
+import selenium from '../assets/logo/selenium.png'
 
 //npm i --save @fortawesome/fontawesome-svg-core
 //npm install --save @fortawesome/free-solid-svg-icons
@@ -79,7 +91,46 @@ const Home = () => {
 				</section>
 
 				<section className={`px-12 Montserrat flex flex-col justify-center items-center text-[#fff] h-screen relative`} id="section-tools">
-					<div></div>
+					<div className={`my-40 md:my-28 p-0 lg:p-24 lg:pt-32 max-w-full max-h-full grid auto-rows-fr gap-8 grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12`}>
+						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3">
+							<img src={react} className="rounded-full hover:animate-spin-slow" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center scale-200">
+							<img src={rust} className="" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3">
+							<div className="rounded-full p-2 bg-[rgba(50,50,50,0.5)]">
+								<img src={linux} className="" alt="" />
+							</div>
+						</div>
+						<div className="rounded-full flex justify-center items-center scale-200">
+								<img src={php} className="" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center row-span-2 col-span-2">
+							<img src={nodejs} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center scale-150">
+							<img src={python} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center row-span-2 col-span-2">
+							<img src={selenium} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center scale-200">
+							<img src={bash} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center row-span-2 col-span-2">
+							<img src={bs4} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center scale-200">
+							<img src={golang} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center row-span-2 col-span-2">
+							<img src={ts} className="rounded-full" alt="" />
+						</div>
+						<div className="rounded-full flex justify-center items-center scale-200">
+							<img src={mern} className="rounded-full" alt="" />
+						</div>
+					</div>
 				</section>
 
 				<div className="sticky bottom-5 w-full flex justify-center items-center">
