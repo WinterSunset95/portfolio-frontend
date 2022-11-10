@@ -85,21 +85,21 @@ hiddenElements.forEach((el) => observer.observe(el))
 						</div>
 						<p className={`font-[300] text-sm text-[#f8f8f8] text-center md:text-end py-4 animate-in`}>Self taught, self motivated, highly determined programmer<br/>Dumb</p>
 						<div className="flex flex-row justify-around items-center p-2 rounded-full md:backdrop-blur-lg md:bg-[rgba(50,50,50,0.5)] md:text-xs animate-in">
-							<i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-github"></i>
-							<i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-reddit"></i>
-							<i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-linkedin"></i>
-							<i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-facebook"></i>
+							<a href="https://github.com/WinterSunset95" target="_blank"><i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-github"></i></a>
+							<a href="https://reddit.com/u/WallaceThiago95" target="_blank"><i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-reddit"></i></a>
+							<a href="https://linkedin.com/in/MarkLFTlau" target="_blank"><i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-linkedin"></i></a>
+							<a href="https://facebook.com/autumntowinter" target="_blank"><i className="text-[#f6f6f6] m-2 fa-3x fa-brands fa-facebook"></i></a>
 						</div>
 					</div>
 				</section>
 
 				<section className={`px-12 Montserrat flex flex-col justify-center items-center text-[#fff] h-screen relative`} id="section-tools">
 					<div className={`my-40 md:my-28 p-0 lg:p-24 lg:pt-36 max-w-full max-h-full grid auto-rows-fr gap-8 grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12`}>
-						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3 animate-in">
+						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3">
 							<img src={react} className="rounded-full hover:animate-spin-slow" alt="" />
 						</div>
 						<div className="rounded-full flex justify-center items-center scale-200">
-							<img src={rust} className="animate-in" alt="" />
+							<img src={rust} className="" alt="" />
 						</div>
 						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3">
 							<div className="rounded-full p-2 bg-[rgba(50,50,50,0.5)]">
