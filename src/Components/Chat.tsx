@@ -5,7 +5,7 @@
 
 import { useState, useEffect, ReactNode } from 'react'
 import { db, database } from '../Firebase'
-import { doc, onSnapshot, collection, addDoc } from 'firebase/firestore'
+import { doc, onSnapshot, collection, addDoc, orderBy } from 'firebase/firestore'
 
 interface Props {
 	text?: ReactNode
@@ -26,16 +26,19 @@ const Chat = () => {
 		doc.forEach((item) => {
 			arr.push(item.data())
 		})
+		arr.sort((a, b) => a.index - b.index)
 		setMessages(arr)
 	})
 
 	const add = async () => {
 		const node = (document.getElementById('input-field') as HTMLInputElement)
 		const value = node.value
+		const last = messages[messages.length - 1]
+		node.value = ""
 		await addDoc(collection(db, 'messages'), {
+			'index': last.index + 1,
 			'message': value
 		})
-		node.value = ""
 	}
 
 	useEffect(() => {
