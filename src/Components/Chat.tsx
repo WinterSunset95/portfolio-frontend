@@ -4,17 +4,11 @@
 
 
 import { useState, useEffect, ReactNode } from 'react'
-import { database } from '../Firebase'
-import { set, ref } from 'firebase/database';
+import { db, database } from '../Firebase'
+import { doc, onSnapshot, collection, addDoc } from 'firebase/firestore'
 
 interface Props {
 	text?: ReactNode
-}
-
-const write = (msg:any) => {
-	set(ref(database, 'trial/'), {
-		2: 'this is bullshit'
-	})
 }
 
 const Msg = ({ text }: Props) => {
@@ -25,6 +19,30 @@ const Msg = ({ text }: Props) => {
 
 const Chat = () => {
 	const [chat, setChat]	= useState(false)
+	const [messages, setMessages] = useState<any[]>([])
+
+	const updates = onSnapshot(collection(db, 'messages'), (doc) => {
+		const arr:any[] = []
+		doc.forEach((item) => {
+			arr.push(item.data())
+		})
+		setMessages(arr)
+	})
+
+	const add = async () => {
+		const node = (document.getElementById('input-field') as HTMLInputElement)
+		const value = node.value
+		await addDoc(collection(db, 'messages'), {
+			'message': value
+		})
+		node.value = ""
+	}
+
+	useEffect(() => {
+		updates()
+	}, [])
+
+
 	return (
 		<div className="sticky bottom-5 w-full flex justify-end items-center px-8">
 			<div className="relative">
@@ -38,10 +56,13 @@ const Chat = () => {
 					</div>
 					<section className={`flex flex-col w-full h-96 grow overflow-x-hidden overflow-y-scroll`}>
 						<Msg text="Hello human" />
+						{
+							messages.map(item => <Msg text={item.message}/>)
+						}
 					</section>
 					<section className="flex justify-around items-center m-1 h-fit">
-						<input type="text" className="rounded-full h-full p-1"/>
-						<button className="rounded-full bg-black text-white p-2" onClick={() => write("HIIIIIII")}>Send</button>
+						<input type="text" className="rounded-full h-full p-1" id="input-field"/>
+						<button className="rounded-full bg-black text-white p-2" onClick={() => add()}>Send</button>
 					</section>
 				</div>
 			</div>
