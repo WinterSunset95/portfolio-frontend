@@ -18,7 +18,9 @@ const Nav = () => {
 					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>Home</li>
 					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>About</li>
 					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>Projects</li>
-					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>TIL</li>
+					<a href="/til" className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>
+						<li className={``}>TIL</li>
+					</a>
 					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>Contact</li>
 				</ul>
 			</div>

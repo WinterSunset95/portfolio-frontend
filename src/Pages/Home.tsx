@@ -4,7 +4,7 @@
 
 
 import {useState, useEffect} from 'react'
-import Nav from '../Components/Nav'
+import Chat from '../Components/Chat'
 import react from '../assets/logo/react.png'
 import linux from '../assets/logo/linux-logo.png'
 import rust from '../assets/logo/cuddlyferris.png'
@@ -59,25 +59,24 @@ const Home = () => {
 	})
 
 // Slide in on scroll in
-const observer = new IntersectionObserver((entries) => {
-	entries.forEach((entry) => {
-		if (entry.isIntersecting) {
-			entry.target.classList.add('scroll-into-view')
-		} else {
-			entry.target.classList.remove('scroll-into-view')
-		}
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('scroll-into-view')
+			} else {
+				entry.target.classList.remove('scroll-into-view')
+			}
+		})
 	})
-})
-const hiddenElements = document.querySelectorAll('.animate-in')
-hiddenElements.forEach((el) => observer.observe(el))
+	const hiddenElements = document.querySelectorAll('.animate-in')
+	hiddenElements.forEach((el) => observer.observe(el))
 
 	return (
-		<div className="flex flex-col justify-start items-center w-full relative">
+		<div className="flex flex-col justify-start items-center w-full ">
 			<div id="section-intro"></div>
-			<Nav />
 			<main className={`w-full backdrop-blur-sm h-fit`}>
 
-				<section className={`mx-12 lg:mx-32 Montserrat flex flex-col md:flex-row justify-center md:justify-between items-center h-[90vh] relative`} >
+				<section className={`mx-12 lg:mx-32 Montserrat flex flex-col md:flex-row justify-center md:justify-between items-center h-[90vh] `} >
 					<img src="https://avatars.githubusercontent.com/u/90015510?s=400&u=c2d963e5188a2af39faf942c72ab89efbc52722a&v=4" className="rounded-full w-48 animate-in" alt="" />
 					<div className="flex flex-col justify-around items-center md:items-end">
 						<div className={`font-[700] text-2xl md:text-4xl text-[#f6f6f6] flex flex-col justify-around items-center md:items-end my-4 animate-in`}>
@@ -93,7 +92,7 @@ hiddenElements.forEach((el) => observer.observe(el))
 					</div>
 				</section>
 
-				<section className={`px-12 Montserrat flex flex-col justify-center items-center text-[#fff] h-screen relative`} id="section-tools">
+				<section className={`px-12 Montserrat flex flex-col justify-center items-center text-[#fff] h-screen `} id="section-tools">
 					<div className={`my-40 md:my-28 p-0 lg:p-24 lg:pt-36 max-w-full max-h-full grid auto-rows-fr gap-8 grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12`}>
 						<div className="rounded-full flex justify-center items-center row-span-3 col-span-3">
 							<img src={react} className="rounded-full hover:animate-spin-slow" alt="" />
@@ -147,6 +146,7 @@ hiddenElements.forEach((el) => observer.observe(el))
 						<i className="m-2 fa-xl fa-solid fa-arrow-up text-white"></i>
 					</button>
 				</div>
+
 
 			</main>
 		</div>
