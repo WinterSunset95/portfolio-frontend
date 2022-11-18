@@ -7,16 +7,18 @@ import { useState, useEffect, ReactNode } from 'react'
 import { db, database } from '../Firebase'
 import { doc, onSnapshot, collection, addDoc, orderBy, query } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { getAuth, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 interface Props {
 	text?: ReactNode
 	user?: ReactNode
+	pos?: ReactNode
 }
 
-const Msg = ({ text, user }: Props) => {
+const Msg = ({ text, user, pos }: Props) => {
 	return (
-		<div className="w-fit rounded-md bg-[rgba(20,20,20,1)] text-[#f6f6f6] m-1">
-			<small className="p-2 text-xs">{user}</small>
+		<div className={`w-fit rounded-md bg-[rgba(20,20,20,1)] text-[#f6f6f6] m-1 ${pos == 'left' ? '' : 'self-end'}`}>
+			<small className={`p-2 text-xs ${pos == 'left' ? '' : 'text-red-400'}`}>{user}</small>
 			<div className="p-2 m-1 rounded-md bg-[rgba(30,30,30,1)]">
 				{text}
 			</div>
@@ -26,8 +28,29 @@ const Msg = ({ text, user }: Props) => {
 
 const Chat = () => {
 	const [chat, setChat]	= useState(false)
-	const [user, setUser]	= useState('anonymous')
-	const [value, setValue] = useState('')
+	const [user, setUser]	= useState('Anonymous')
+	const [uid, setUid] = useState('Anonymous')
+
+	const auth = getAuth()
+	if (user == 'Anonymous' && auth.currentUser) {
+		signOut(auth)
+		.then(() => console.log('Signed out'))
+		.catch((error) => console.log(error))
+	} else {
+		console.log('no errors')
+	}
+
+	const login = () => {
+		if (!auth.currentUser) {
+			signInWithPopup(auth, new GoogleAuthProvider())
+			.then((result) => {
+				if (result.user.displayName && result.user.uid) {
+					setUser(result.user.displayName)
+					setUid(result.user.uid)
+				}
+			})
+		}
+	}
 
 	const messagesRef = query(collection(db, 'messages'), orderBy('timestamp'))
 	const [messages] = useCollectionData(messagesRef)
@@ -38,10 +61,10 @@ const Chat = () => {
 		if (messages) {
 			const node = (document.getElementById('input-field') as HTMLInputElement)
 			const value = node.value
-			const last = messages[messages.length - 1]
 			node.value = ""
 			await addDoc(collection(db, 'messages'), {
 				'user': user,
+				'uid': uid,
 				'timestamp': utc,
 				'message': value
 			})
@@ -57,6 +80,7 @@ const Chat = () => {
 	useEffect(() => {
 		const node = document.getElementById('message-container')
 		node!.scrollTo(0, node!.scrollHeight)
+		console.log(messages)
 	}, [messages])
 
 	return (
@@ -72,12 +96,17 @@ const Chat = () => {
 					</div>
 					<section id="message-container" className={`flex flex-col w-full h-96 grow overflow-x-hidden overflow-y-scroll`}>
 						{
-							messages?.map(item => <Msg key={item.timestamp} text={item.message} user={item.user}/>)
+							messages?.map(item => <Msg key={item.timestamp} text={item.message} user={item.user} pos={item.uid == uid ? 'right' : 'left'}/>)
 						}
 					</section>
 					<section className="flex justify-around items-center m-1 h-fit">
-						<input type="text" className="rounded-full h-full p-1" id="input-field" onKeyDown={(event) => typing(event)}/>
-						<button className="rounded-full bg-black text-white p-2" onClick={() => add()}>Send</button>
+						{
+							user != 'Anonymous' ?
+							<>
+								<input type="text" className="rounded-full h-full p-1" id="input-field" onKeyDown={(event) => typing(event)}/>
+								<button className="rounded-full bg-black text-white p-2" onClick={() => add()}>Send</button>
+							</> : <div className="p-2 bg-blue-400 rounded-lg cursor-pointer" onClick={() => login()}>Login to send messages</div>
+						}
 					</section>
 				</div>
 			</div>
