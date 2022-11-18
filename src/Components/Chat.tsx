@@ -5,7 +5,8 @@
 
 import { useState, useEffect, ReactNode } from 'react'
 import { db, database } from '../Firebase'
-import { doc, onSnapshot, collection, addDoc, orderBy } from 'firebase/firestore'
+import { doc, onSnapshot, collection, addDoc, orderBy, query } from 'firebase/firestore'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 interface Props {
 	text?: ReactNode
@@ -19,32 +20,22 @@ const Msg = ({ text }: Props) => {
 
 const Chat = () => {
 	const [chat, setChat]	= useState(false)
-	const [messages, setMessages] = useState<any[]>([])
 
-	const updates = onSnapshot(collection(db, 'messages'), (doc) => {
-		const arr:any[] = []
-		doc.forEach((item) => {
-			arr.push(item.data())
-		})
-		arr.sort((a, b) => a.index - b.index)
-		setMessages(arr)
-	})
+	const messagesRef = collection(db, 'messages')
+	const [messages] = useCollectionData(messagesRef)
 
 	const add = async () => {
-		const node = (document.getElementById('input-field') as HTMLInputElement)
-		const value = node.value
-		const last = messages[messages.length - 1]
-		node.value = ""
-		await addDoc(collection(db, 'messages'), {
-			'index': last.index + 1,
-			'message': value
-		})
+		if (messages) {
+			const node = (document.getElementById('input-field') as HTMLInputElement)
+			const value = node.value
+			const last = messages[messages.length - 1]
+			node.value = ""
+			await addDoc(collection(db, 'messages'), {
+				'index': last.index + 1,
+				'message': value
+			})
+		}
 	}
-
-	useEffect(() => {
-		updates()
-	}, [])
-
 
 	return (
 		<div className="sticky bottom-5 w-full flex justify-end items-center px-8">
@@ -57,10 +48,9 @@ const Chat = () => {
 						<div className="Montserrat text-[#f6f6f6]">Global Chat</div>
 						<i className="fa-regular fa-circle-xmark text-[#f6f6f6]" onClick={() => setChat(false)}></i>
 					</div>
-					<section className={`flex flex-col w-full h-96 grow overflow-x-hidden overflow-y-scroll`}>
-						<Msg text="Hello human" />
+					<section id="message-container" className={`flex flex-col w-full h-96 grow overflow-x-hidden overflow-y-scroll`}>
 						{
-							messages.map(item => <Msg text={item.message}/>)
+							messages?.map(item => <Msg key={item.index} text={item.message}/>)
 						}
 					</section>
 					<section className="flex justify-around items-center m-1 h-fit">
