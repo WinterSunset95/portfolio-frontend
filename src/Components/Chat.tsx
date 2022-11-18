@@ -10,32 +10,54 @@ import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 interface Props {
 	text?: ReactNode
+	user?: ReactNode
 }
 
-const Msg = ({ text }: Props) => {
+const Msg = ({ text, user }: Props) => {
 	return (
-		<div className="w-fit rounded-md p-2 px-4 bg-[rgba(20,20,20,1)] text-[#f6f6f6] m-1">{text}</div>
+		<div className="w-fit rounded-md bg-[rgba(20,20,20,1)] text-[#f6f6f6] m-1">
+			<small className="p-2 text-xs">{user}</small>
+			<div className="p-2 m-1 rounded-md bg-[rgba(30,30,30,1)]">
+				{text}
+			</div>
+		</div>
 	)
 }
 
 const Chat = () => {
 	const [chat, setChat]	= useState(false)
+	const [user, setUser]	= useState('anonymous')
+	const [value, setValue] = useState('')
 
-	const messagesRef = collection(db, 'messages')
+	const messagesRef = query(collection(db, 'messages'), orderBy('timestamp'))
 	const [messages] = useCollectionData(messagesRef)
 
 	const add = async () => {
+		var d = new Date()
+		var utc = d.getTime()
 		if (messages) {
 			const node = (document.getElementById('input-field') as HTMLInputElement)
 			const value = node.value
 			const last = messages[messages.length - 1]
 			node.value = ""
 			await addDoc(collection(db, 'messages'), {
-				'index': last.index + 1,
+				'user': user,
+				'timestamp': utc,
 				'message': value
 			})
 		}
 	}
+
+	const typing = (e:any) => {
+		if (e.keyCode == 13 && (e.target as HTMLInputElement).value != '') {
+			add()
+		}
+	}
+
+	useEffect(() => {
+		const node = document.getElementById('message-container')
+		node!.scrollTo(0, node!.scrollHeight)
+	}, [messages])
 
 	return (
 		<div className="sticky bottom-5 w-full flex justify-end items-center px-8">
@@ -50,11 +72,11 @@ const Chat = () => {
 					</div>
 					<section id="message-container" className={`flex flex-col w-full h-96 grow overflow-x-hidden overflow-y-scroll`}>
 						{
-							messages?.map(item => <Msg key={item.index} text={item.message}/>)
+							messages?.map(item => <Msg key={item.timestamp} text={item.message} user={item.user}/>)
 						}
 					</section>
 					<section className="flex justify-around items-center m-1 h-fit">
-						<input type="text" className="rounded-full h-full p-1" id="input-field"/>
+						<input type="text" className="rounded-full h-full p-1" id="input-field" onKeyDown={(event) => typing(event)}/>
 						<button className="rounded-full bg-black text-white p-2" onClick={() => add()}>Send</button>
 					</section>
 				</div>
