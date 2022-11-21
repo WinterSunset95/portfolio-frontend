@@ -17,7 +17,9 @@ const Nav = () => {
 				<ul className={`${full ? 'w-full' : 'w-0'} md:w-full duration-300 overflow-hidden flex justify-between md:justify-end items-center text-sm md:text-lg`}>
 					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>Home</li>
 					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>About</li>
-					<li className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>Projects</li>
+					<a href="/projects" className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>
+						<li className={``}>Projects</li>
+					</a>
 					<a href="/til" className={`mr-2 md:mr-6 cursor-pointer hover:font-[500]`}>
 						<li className={``}>TIL</li>
 					</a>

@@ -19,10 +19,6 @@ import bs4 from '../assets/logo/bs4.png'
 import selenium from '../assets/logo/selenium.png'
 import git from '../assets/logo/git.png'
 
-//npm i --save @fortawesome/fontawesome-svg-core
-//npm install --save @fortawesome/free-solid-svg-icons
-//npm install --save @fortawesome/react-fontawesome
-
 const Home = () => {
 	const [pos, setPos] = useState('top')
 	const [yvalue, setYvalue] = useState(0)

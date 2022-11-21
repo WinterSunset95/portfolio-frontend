@@ -9,6 +9,7 @@ import Nav from './Components/Nav'
 import Chat from './Components/Chat'
 import Home from './Pages/Home'
 import Til from './Pages/Til'
+import Projects from './Pages/Projects'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/til" element={<Til />} />
+				<Route path="/projects" element={<Projects />} />
 			</Routes>
 			<Chat />
 		</Router>
