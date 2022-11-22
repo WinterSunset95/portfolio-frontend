@@ -1,0 +1,12 @@
+
+
+
+
+
+[
+	{
+		"name": "FireChat",
+		"image": "/src/assets/backgrounds/firechat.png",
+		"description": "A realtime chat app built with React and Firebase"
+	}
+]
