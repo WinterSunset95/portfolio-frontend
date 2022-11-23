@@ -8,5 +8,10 @@
 		"name": "FireChat",
 		"image": "/src/assets/backgrounds/firechat.png",
 		"description": "A realtime chat app built with React and Firebase"
+	},
+	{
+		"name": "FireChat_2",
+		"image": "/src/assets/backgrounds/firechat.png",
+		"description": "A realtime chat app built with React and Firebase"
 	}
 ]
