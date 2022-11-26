@@ -70,7 +70,7 @@ const Home = () => {
 	return (
 		<div className="flex flex-col justify-start items-center w-full ">
 			<div id="section-intro"></div>
-			<main className={`w-full backdrop-blur-sm h-fit`}>
+			<main className={`w-full backdrop-blur-lg h-fit`}>
 
 				<section className={`mx-12 lg:mx-32 Montserrat flex flex-col md:flex-row justify-center md:justify-between items-center h-[90vh] `} >
 					<img src="https://avatars.githubusercontent.com/u/90015510?s=400&u=c2d963e5188a2af39faf942c72ab89efbc52722a&v=4" className="rounded-full w-48 animate-in" alt="" />

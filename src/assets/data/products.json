@@ -7,11 +7,25 @@
 	{
 		"name": "FireChat",
 		"image": "/src/assets/backgrounds/firechat.png",
-		"description": "A realtime chat app built with React and Firebase"
+		"description": "A realtime chat app built with React and Firebase",
+		"link": "https://firechat-dusky.vercel.app"
 	},
 	{
 		"name": "FireChat_2",
 		"image": "/src/assets/backgrounds/firechat.png",
-		"description": "A realtime chat app built with React and Firebase"
+		"description": "A realtime chat app built with React and Firebase",
+		"link": "https://firechat-dusky.vercel.app"
+	},
+	{
+		"name": "Vid-Dwlder",
+		"image": "/src/assets/backgrounds/vid-dwlder.png",
+		"description": "A video downloader scripted on bash, uses yt-dlp",
+		"link": "https://github.com/WinterSunset95/Vid-Dwlder"
+	},
+	{
+		"name": "FireChat_3",
+		"image": "/src/assets/backgrounds/firechat.png",
+		"description": "A realtime chat app built with React and Firebase",
+		"link": "https://firechat-dusky.vercel.app"
 	}
 ]

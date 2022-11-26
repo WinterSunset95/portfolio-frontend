@@ -11,17 +11,19 @@ import data from '../assets/data/products.json'
 
 const Projects = () => {
 	return (
-		<div className="px-20 backdrop-blur-sm flex wrap">
+		<div className="px-20 backdrop-blur-lg grid grid-cols-3 gap-12">
 			{
 				data.map(item => {
 					return (
-						<div key={item.name} className={`drop-shadow-md m-4 relative w-fit h-fit`}>
-							<div className={`w-full h-full absolute bottom-0 left-0 flex flex-col justify-end items-end bg-gradient-to-br from-[rgba(0,0,0,0)] via-[rgba(0,0,0,0.8)] to-[rgba(0,0,0,1)] p-4`}>
-								<span className={`text-end MontAlt text-white`}>{item.name}</span>
-								<span className={`text-end MontAlt text-white`}>{item.description}</span>
+						<a href={item.link} target="_blank" key={item.name} className={`drop-shadow-md m-4 relative w-full h-full rounded-xl overflow-hidden`}>
+							<div className={`w-full h-full absolute bottom-0 left-0 project-item`}>
+								<div className="project-item-text p-4">
+									<span className={`text-end MontAlt text-white text-2xl`}>{item.name}</span>
+									<span className={`text-end MontAlt text-white`}>{item.description}</span>
+								</div>
 							</div>
-							<img src={item.image} alt="" className={``}/>
-						</div>
+							<img src={item.image} alt="" className={`w-full h-full`}/>
+						</a>
 					)
 				})
 			}
